@@ -1,14 +1,7 @@
+import categoriesMap from "../utils/categoriesMap";
+
 function WishCard(props) {
     const wish = props.wish
-
-    const categoriesMap = {
-        misc: "Misc",
-        course: "Curso",
-        device: "Periférico",
-        music: "Música",
-        game: "Jogo",
-        decoration: "Decoração/Mobília"
-    } 
 
     return (
         <div className="card " style={ { maxWidth: "16rem" } }>
