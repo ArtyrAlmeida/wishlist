@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const wishesRouter = require("./routes/wishesRouter");
+const userRouter = require("./routes/userRouter");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 app.get("/", (req, res) => res.send("Running"));
 
 app.use("/api/wishes", wishesRouter);
+app.use("/api/user", userRouter);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {

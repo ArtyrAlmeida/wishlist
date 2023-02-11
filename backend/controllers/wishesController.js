@@ -2,16 +2,23 @@ const Wish = require("../models/wishesModel");
 const mongoose = require("mongoose")
 
 const getWishlist = async (req, res) => {
+    const user = req.user;
+    
+    if(user.role === 'OWNER') {
+        const wishlist = await Wish.find({}, { bought: 0, boughtBy: 0 });
+        return res.status(200).json(wishlist);
+    }
+
     const wishlist = await Wish.find();
     res.status(200).json(wishlist);
 }
 
 const createWish = async (req, res) => {
     try {
-        const wish = await Wish.create({ ...req.body });
+        const wish = await Wish.create({ ...req.body, bought: false, boughtBy: '' });
         res.status(201).json(wish);
     } catch (error) {
-        res.status(400).json({ error });
+        res.status(400).json({ error: error.message });
     }
 }
 

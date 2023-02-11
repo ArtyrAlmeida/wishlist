@@ -20,8 +20,16 @@ const wishesSchema = new Schema({
     },
     url: {
         type: String,
-        required: false,
+        required: true,
     },
+    bought: {
+        type: Boolean,
+        required: true,
+    },
+    boughtBy: {
+        type: String,
+        required: true,
+    }
 }, { timestamps: true });
 
 const Wish = mongoose.model("Wish", wishesSchema);
